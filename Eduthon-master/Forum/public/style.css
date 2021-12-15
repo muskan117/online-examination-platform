@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: "Times New Roman", Times, serif;
+    background-color: rgb(139, 203, 255);
+}
+section.chat__section {
+    width: 800px;
+    max-width: 90%;
+    background: #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.brand {
+    padding: 20px;
+    background-color: #f1f1f1;
+    align-items: center;
+}
+.brand h1 {
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: normal;
+    margin-left: 10px;
+}
+.message__area{
+    height: 320px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-top: 40px;
+}
+textarea {
+    width: 100%;
+    border: none;
+    padding: 20px;
+    font-size: 16px;
+    outline: none;
+    background: #FBFBFB;
+}
+.message {
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    max-width: 300px;
+    position: relative;
+    font-size: medium;
+}
+.incoming {
+    background: rgb(7, 11, 65);
+    color: #fff;
+    padding-top:10px;
+    word-wrap: wrap;
+}
+.outgoing {
+    background: rgb(139, 203, 255);
+    color: black;
+    margin-left: auto;
+    padding-top:10px;
+    word-wrap: wrap;
+}
+.message h4 {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    color: #333;
+    font-size: 14px;
+}
+#bla {
+    background-color: rgb(7, 11, 65);
+    opacity: 1;
+  }
+  #wh {
+    color: white;
+  }
+  .ft {
+  color: white;
+  text-align: center;
+  margin: 0;
+  }
+  #navbar {
+  overflow: hidden;
+  background-color: rgb(7, 11, 65);
+  padding: 20px 80px;
+  transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+  }
+  #navbar a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+  }
+  #navbar a.active {
+  text-decoration: underline;
+  }
+  .ns:hover {
+  background-color: rgb(139, 203, 255);
+  color: black;
+  }
+  #navbar-right {
+  float: right;
+  }
+  @media screen and (max-width: 40px) {
+  #navbar {
+  padding: 10px 10px !important;
+  }
+  #navbar a {
+  float: none;
+  display: block;
+  text-align: left;
+  }
+  #navbar-right {
+  float: none;
+  }
+  }
+  .mgh{
+  padding-top: 200px;
+  }
+
+  .pdm{
+    margin-top: 100px;
+    background-color: rgb(7, 11, 65);
+    margin-left: 70px;
+    margin-right: 70px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    border-radius: 25px;
+  }
+  .video-card{
+      margin-top: 50px;
+      margin-left: 0px;
+      margin-right: 0px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }

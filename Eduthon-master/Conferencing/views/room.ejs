@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script>
+    const ROOM_ID = "<%= roomId %>"
+  </script>
+  <script defer src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="script.js" defer></script>
+  <title>Document</title>
+  <style>
+    #video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 330px);
+      grid-auto-rows: 300px;
+    }
+
+    video {
+      width: 98%;
+      height: 100%;
+      border-radius: 30px;
+      object-fit: cover;
+      margin-left: 10px;
+    }
+    body{
+         font-family: "Times New Roman", Times, serif;
+         background-color: rgb(139, 203, 255);
+      }
+    #bla {
+  background-color: rgb(7, 11, 65);
+  opacity: 1;
+}
+#wh {
+  color: white;
+}
+.ft {
+color: white;
+text-align: center;
+margin: 0;
+}
+.sides{
+      background-color: rgb(7, 11, 65);
+      color: white;
+      height:700px;
+      padding-top: 100px;
+      padding-left: 30px;
+      padding-right: 10px;
+
+    }
+    .mg{
+      margin-bottom: 30px;
+    }
+    .mgr{
+        margin-bottom: 40px;
+    }
+    .hvr:hover {
+      transform: scale(1.1);
+    }
+    .hv:hover {
+        transform: scale(1.01);
+    }
+
+    .mid{
+        background-color: rgb(7, 11, 65);
+          height:70px;
+          margin-top: 15px;
+          margin-bottom: 15px;
+          padding-right: 25px;
+    }
+    .mid1{
+        background-color: rgb(185, 185, 185);
+          height:32px;
+          padding-right: 25px;
+    }
+    .bdr{
+      border-radius: 25px;
+    }
+    .ip {
+      color: rgb(7, 11, 65);
+      margin-right: 80px;
+    }
+    .hvr1:hover {
+      transform: scale(1.1);
+      color: blue;
+    }
+#navbar {
+overflow: hidden;
+background-color: rgb(7, 11, 65);
+padding: 20px 80px;
+transition: 0.4s;
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 99;
+}
+#navbar a {
+float: left;
+color: white;
+text-align: center;
+padding: 12px;
+text-decoration: none;
+font-size: 18px;
+line-height: 25px;
+border-radius: 4px;
+}
+#navbar a.active {
+text-decoration: underline;
+}
+.ns:hover {
+background-color: rgb(139, 203, 255);
+color: black;
+}
+#navbar-right {
+float: right;
+}
+@media screen and (max-width: 40px) {
+#navbar {
+padding: 10px 10px !important;
+}
+#navbar a {
+float: none;
+display: block;
+text-align: left;
+}
+#navbar-right {
+float: none;
+}
+}
+.mgh{
+padding-top: 160px;
+}
+  </style>
+</head>
+<body>
+   <!-- Navbar -->
+   <div id="navbar">
+    <a href="index.html" id="logo"><img src="logo.png" alt="image" style="width:200px; height:100px"; /></a>
+    <div id="navbar-right">
+      <div>
+      <a class="ns" href="landing-page.html">Home</a>
+      <a class="ns" href="about-us.html">About Us</a>
+      <a href="contact-us.html" class="ns">Contact Us</a></div>
+        <div class="col d-flex justify-content-end">
+          <p class="mt-3 d-flex">
+            <a href="www.facebook.com" class="d-flex align-items-center justify-content-center ns"><span class="mx-2"><i class='fab fa-facebook-square' style='font-size:18px'></i></span></a>
+            <a href="www.twitter.com" class="d-flex align-items-center justify-content-center ns"><span class="mx-2"><i class='fab fa-twitter-square' style='font-size:18px'></i></span></a>
+            <a href="www.instagram.com" class="d-flex align-items-center justify-content-center ns"><span class="mx-2"><i class='fab fa-instagram' style='font-size:18px'></i></span></a>
+            <a href="www.dribbble.com" class="d-flex align-items-center justify-content-center ns"><span class="mx-2"><i class='fab fa-dribbble-square' style='font-size:18px'></i></span></a>
+          </p>
+        </div>
+    </div>
+  </div>
+  <!-- Navbar Ends -->
+
+  <div class="row mgh ">
+    <div class="col-2 sides">
+      <div class="hvr mg d-flex">
+        <i class='fas fa-user-plus' style='font-size:28px'></i>
+        <h4>&nbsp; Invite</h4>
+      </div>
+      <div class="hvr mg d-flex">
+        <i class="material-icons" style="font-size:28px">schedule</i>
+        <h4>&nbsp; Schedule meet</h4>
+      </div>
+      <div class="hvr mg d-flex">
+        <i class='fas fa-video' style='font-size:28px'></i>
+        <h4>&nbsp; Join a meeting</h4>
+      </div>
+      <div class="hvr mg d-flex">
+        <i class="material-icons" style="font-size:28px">screen_share</i>
+        <h4>&nbsp; Share Screen</h4>
+      </div>
+      <div class="hvr mg d-flex">
+        <i class="material-icons" style="font-size:28px">chat</i>
+        <h4>&nbsp; Chat</h4>
+      </div>
+      <div class="hvr mg d-flex">
+        <i class="material-icons" style="font-size:28px">mic_off</i>
+        <h4>&nbsp; Mute All</h4>
+      </div>
+
+    </div>
+    <div class="col-8">
+      <div class="mid d-flex justify-content-end">
+        <button class="form-control col-3 align-self-center hvr btn btn-primary" name="button">Change CR</button>
+      </div>
+      <div class="hv bdr" id="video-grid"></div>
+      <div class="mid1 d-flex justify-content-center col-8" style="position: fixed; bottom: 15px;">
+        <i class="material-icons ip hvr1" style="font-size:28px">pan_tool</i>
+        <i class="material-icons ip hvr1" style="font-size:28px">mic_off</i>
+        <i class='fas fa-video-slash ip hvr1' style='font-size:28px'></i>
+        <i class="material-icons ip hvr1" style="font-size:28px">phone_paused</i>
+        <i class="material-icons hvr1" style="font-size:28px" >call_end</i>
+      </div>
+    </div>
+    <div class="col-2 sides">
+      <div class=" mgr d-flex">
+        <h3>Participants &nbsp; </h3><i class="material-icons" style="font-size:36px">people</i>
+      </div>
+      <div class="row mb-4">
+        <div class="col-3 d-flex justify-content-center">
+          <i class='fas fa-star' style='font-size:20px; color: gold;'></i>
+        </div>
+        <div class="col-6 ">
+          <b>Vanshika</b>
+        </div>
+        <div class="col-3 ">
+          <i class="material-icons" style="font-size:20px">mic_off</i>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-3 d-flex justify-content-center">
+          <i class='fas fa-star' style='font-size:20px'></i>
+        </div>
+        <div class="col-6">
+          <b>Sakshi Singh</b>
+        </div>
+        <div class="col-3 ">
+          <i class="material-icons" style="font-size:20px">mic_off</i>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-3 d-flex justify-content-center">
+          <i class='fas fa-star' style='font-size:20px'></i>
+        </div>
+        <div class="col-6 ">
+          <b>Sanchita</b>
+        </div>
+        <div class="col-3">
+          <i class="material-icons" style="font-size:20px">mic_off</i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+<footer style="margin-top: -50px;">
+  <div class="container-fluid mt-4" id="bla" style="padding-top: 40px; padding-left: 60px; padding-right: 60px;">
+  <div class="container" style="padding-bottom: 50px; padding-top: 50px;">
+
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="footer-widget">
+                <div style=" margin-left: -60px; margin-top: 0px; margin-bottom: 0px; padding-bottom: 0px;"> <img src="rocket.png" style="height: 300px; max-width: 250px;" alt=""> </div>
+              </div>
+            </div>
+            <div class="col-lg-3">
+                  <div class="footer-widget" style="margin-left: 40px;">
+                      <h3 id="wh" style="margin-bottom: 15px;">Quick Links</h3>
+                          <div><i class="fa fa-caret-right" id="wh"></i> <a href="about-us.html" id="wh">About Us </a></div>
+                          <div><i class="fa fa-caret-right" id="wh"></i> <a href="#aim" id="wh">Our Aim</a></div>
+                          <div><i class="fa fa-caret-right" id="wh"></i> <a href="contact-us.html" id="wh">Contact Us</a></div>
+                          <div><i class="fa fa-caret-right" id="wh"></i> <a href="privacy.html" id="wh">Privacy Policy</a></div>
+                          <div><i class="fa fa-caret-right" id="wh"></i> <a href="contri.html" id="wh">Contribute</a></div>
+                  </div>
+            </div>
+            <div class="col-lg-3">
+                  <div class="footer-widget" style=" margin-left: 75px;">
+                      <h3 id="wh" style="margin-bottom: 15px;">Social</h3>
+                          <div><i class="fa fa-facebook" id="wh"></i> <a href="www.facebook.com" id="wh">Facebook</a></div>
+                          <div><i class="fa fa-instagram" id="wh"></i> <a href="www.instagram.com" id="wh">Instagram</a></div>
+                          <div><i class="fa fa-whatsapp" id="wh"></i> <a href="www.whatsapp.com" id="wh">WhatsApp</a></div>
+                          <div><i class="fa fa-twitter" id="wh"></i> <a href="www.twitter.com" id="wh">Twitter</a></div>
+                          <div><i class="fa fa-dribbble" id="wh"></i> <a href="www.dribbble.com" id="wh">Dribbble</a></div>
+                  </div>
+            </div>
+            <div class="col-lg-3">
+                  <div class="footer-widget" style=" margin-right: -60px;  margin-left: 30px;">
+                      <h3 id="wh" style="margin-bottom: 15px;">Contact Us</h3>
+                          <div id="wh"><i class="fa fa-map-marker" id="wh"></i> Kiet, Ghaziabad </div>
+                          <div id="wh"><i class="fa fa-phone" id="wh"></i> (+91) 8439705872 </div>
+                          <div id="wh"><i class="fa fa-envelope" id="wh"></i> info.addhyan@gmail.com</div>
+                          <div id="wh"><i class="fa fa-clock-o" id="wh"></i> Mon - Sat, 08 AM - 06 PM</div>
+                  </div>
+            </div>
+          </div>
+</div>
+<div class="col-sm-12">
+   <p class="ft" style="padding-bottom: 40px;">Designed with ❤️ By <a target="_blank" href="about-us.html">Team Addhyan</a></p>
+</div>
+
+  </div>
+</footer>
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</body>
+</html>
